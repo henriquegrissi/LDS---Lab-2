@@ -45,6 +45,6 @@ Pretende-se desenvolver um sistema para apoio à gestão de aluguéis de automó
 
 * Como dono do sistema quero poder associar um aluguel de carro a um contrato de créditos para mostrar que foi concedido por bancos ou empresas.
 
-* Como dono do sistema quero que o sistema seja subdividido em dois subsistemas para um ser construir dinamicamente as páginas web e outra para pedidos e contratos
+* Como dono do sistema quero que o sistema seja subdividido em dois subsistemas para um construir dinamicamente as páginas web e outra para pedidos e contratos
 
 * Como dono do sistema quero que o servidor central se encontre ligado aos computadores locais  dos clientes e os demais através da internet.
