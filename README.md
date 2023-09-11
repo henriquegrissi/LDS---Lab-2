@@ -1,4 +1,4 @@
-# LDS---Lab-2
+# LDS - Laboratório-2
 
 ## 👨‍🏫 Professor:
 Danilo Boechat Seufitelli
