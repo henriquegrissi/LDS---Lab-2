@@ -15,6 +15,10 @@ Pretende-se desenvolver um sistema para apoio à gestão de aluguéis de automó
 ## Histórias de Usuários 
 * Como dono do sistema quero que o usuário só acesse o sistema após cadastro prévio, para que se tenha segurança e controle de acesso.
 
+* Como usuário do sistema (cliente, agente) quero ser capaz de realizar meu cadastro na plataforma
+
+* Como usuário do sistema (cliente, agente) quero ser capaz de realizar login na plataforma
+
 * Como cliente eu quero introduzir pedidos de aluguel, para ter controle das minhas movimentações no site.
 
 * Como cliente eu quero modificar pedidos de aluguel, para ter controle das minhas movimentações no site.
