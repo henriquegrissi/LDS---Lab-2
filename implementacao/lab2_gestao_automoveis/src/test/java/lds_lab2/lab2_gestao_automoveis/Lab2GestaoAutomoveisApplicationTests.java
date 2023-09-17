@@ -1,4 +1,4 @@
-package lds.lab2_gestao_automoveis;
+package lds_lab2.lab2_gestao_automoveis;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

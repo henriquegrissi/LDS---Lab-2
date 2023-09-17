@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Lab2GestaoAutomoveisApplication",
+            "request": "launch",
+            "mainClass": "lds_lab2.lab2_gestao_automoveis.Lab2GestaoAutomoveisApplication",
+            "projectName": "lab2_gestao_automoveis"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Lab2GestaoAutomoveisApplication<lab2_gestao_automoveis>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "lds.lab2_gestao_automoveis.Lab2GestaoAutomoveisApplication",
+            "projectName": "lab2_gestao_automoveis",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
