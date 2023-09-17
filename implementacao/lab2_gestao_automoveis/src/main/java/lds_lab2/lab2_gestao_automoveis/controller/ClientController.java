@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import lds_lab2.lab2_gestao_automoveis.model.Client;
-import lds_lab2.lab2_gestao_automoveis.repository.ClientRepository;
+import lds_lab2.lab2_gestao_automoveis.model.ClienteModel;
+import lds_lab2.lab2_gestao_automoveis.repository.ClienteRepository;
 
 @RestController
 public class ClientController {
     @Autowired
-    private ClientRepository clienRepository;
+    private ClienteRepository clienRepository;
     
     @GetMapping("/")
     public String helloWorldController(){
@@ -24,18 +24,18 @@ public class ClientController {
     }
 
     @PostMapping("/exemplo")
-    public Client exemploModelController(@RequestBody Client exemplo){
+    public ClienteModel exemploModelController(@RequestBody ClienteModel exemplo){
         return clienRepository.save(exemplo);
     }
 
     @PostMapping("/update")
-    public Client updateClient(@RequestBody Client updatedClient){
+    public ClienteModel updateClient(@RequestBody ClienteModel updatedClient){
         return clienRepository.save(updatedClient);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Client id) {
+    public void delete(@PathVariable ClienteModel id) {
         clienRepository.delete(id);
     }
 
