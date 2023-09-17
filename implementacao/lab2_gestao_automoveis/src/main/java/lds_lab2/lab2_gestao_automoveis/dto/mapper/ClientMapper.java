@@ -1,7 +1,5 @@
 package lds_lab2.lab2_gestao_automoveis.dto.mapper;
 
-import java.util.Locale.Category;
-
 import lds_lab2.lab2_gestao_automoveis.dto.ClientDTO;
 import lds_lab2.lab2_gestao_automoveis.model.Client;
 

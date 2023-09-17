@@ -1,6 +1,5 @@
 package lds_lab2.lab2_gestao_automoveis.controller;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,12 +34,11 @@ public class ExemploController {
         return clienRepository.save(updatedClient);
     }
 
-    // TA FALTANDO COISA AQUI
-    // @DeleteMapping("/{id}")
-    // @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    // @CrossOrigin(origins = "http://localhost:3000")
-    // public void delete(@PathVariable Long id) {
-    //     exemploRepository.delete(id);
-    // }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Client id) {
+        clienRepository.delete(id);
+    }
     
 }
