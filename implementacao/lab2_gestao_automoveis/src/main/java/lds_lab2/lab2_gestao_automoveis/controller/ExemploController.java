@@ -18,7 +18,7 @@ import lds_lab2.lab2_gestao_automoveis.repository.ExemploRepository;
 @RestController
 public class ExemploController {
     @Autowired
-    private ExemploRepository exemploRepository;
+    private ExemploRepository clienRepository;
     
     @GetMapping("/")
     public String helloWorldController(){
@@ -27,7 +27,12 @@ public class ExemploController {
 
     @PostMapping("/exemplo")
     public Client exemploModelController(@RequestBody Client exemplo){
-        return exemploRepository.save(exemplo);
+        return clienRepository.save(exemplo);
+    }
+
+    @PostMapping("/update")
+    public Client updateClient(@RequestBody Client updatedClient){
+        return clienRepository.save(updatedClient);
     }
 
     // TA FALTANDO COISA AQUI
