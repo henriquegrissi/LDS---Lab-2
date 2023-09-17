@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lds_lab2.lab2_gestao_automoveis.model.Client;
-import lds_lab2.lab2_gestao_automoveis.repository.ExemploRepository;
+import lds_lab2.lab2_gestao_automoveis.repository.ClientRepository;
 
 @RestController
-public class ExemploController {
+public class ClientController {
     @Autowired
-    private ExemploRepository clienRepository;
+    private ClientRepository clienRepository;
     
     @GetMapping("/")
     public String helloWorldController(){
@@ -37,6 +37,11 @@ public class ExemploController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Client id) {
         clienRepository.delete(id);
+    }
+
+    @GetMapping("/user")
+    public void returnAll(){
+        clienRepository.findAll();
     }
     
 }

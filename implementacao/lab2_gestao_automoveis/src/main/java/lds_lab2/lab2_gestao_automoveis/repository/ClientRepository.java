@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import lds_lab2.lab2_gestao_automoveis.model.Client;
 
 @Repository
-public interface ExemploRepository extends CrudRepository<Client, Integer>{
+public interface ClientRepository extends CrudRepository<Client, Integer>{
     
 }
