@@ -1,21 +1,21 @@
 package lds_lab2.lab2_gestao_automoveis.dto.mapper;
 
-import lds_lab2.lab2_gestao_automoveis.dto.ClientDTO;
+import lds_lab2.lab2_gestao_automoveis.dto.ClienteDto;
 import lds_lab2.lab2_gestao_automoveis.model.ClienteModel;
 
 public class ClientMapper {
     
-        public ClientDTO toDTO(ClienteModel client) {
+        public ClienteDto toDTO(ClienteModel client) {
         if (client == null) {
             return null;
         }
 
-        return new ClientDTO(client.getNome(), client.getEndereco(), client.getLogin(),
+        return new ClienteDto(client.getNome(), client.getEndereco(), client.getLogin(),
                                 client.getSenha(),client.getProfissao(), client.getEntidadeEmpregaticia(),
                                 client.getRendimentosAuferidos(), client.getCpf(),client.getRg());
     }
 
-    public ClienteModel toEntity(ClientDTO ClientDTO) {
+    public ClienteModel toEntity(ClienteDto ClientDTO) {
         if (ClientDTO == null) {
             return null;
         }
@@ -25,7 +25,7 @@ public class ClientMapper {
         client.setEndereco(ClientDTO.endereco());
         client.setLogin(ClientDTO.login());
         client.setSenha(ClientDTO.senha());
-        client.setProfissao(ClientDTO.prfissao());
+        client.setProfissao(ClientDTO.profissao());
         client.setEntidadeEmpregaticia(ClientDTO.entidadeEmpregaticia());
         client.setRendimentosAuferidos(ClientDTO.rendimentosAuferidos());
         client.setCpf(ClientDTO.cpf());
