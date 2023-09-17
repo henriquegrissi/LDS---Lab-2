@@ -2,7 +2,6 @@ package lds_lab2.lab2_gestao_automoveis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +32,6 @@ public class ExemploController {
     public Client updateClient(@RequestBody Client updatedClient){
         return clienRepository.save(updatedClient);
     }
-
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
