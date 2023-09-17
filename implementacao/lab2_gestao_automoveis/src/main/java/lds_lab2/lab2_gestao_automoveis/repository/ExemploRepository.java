@@ -3,9 +3,9 @@ package lds_lab2.lab2_gestao_automoveis.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import lds_lab2.lab2_gestao_automoveis.model.ExemploModel;
+import lds_lab2.lab2_gestao_automoveis.model.Client;
 
 @Repository
-public interface ExemploRepository extends CrudRepository<ExemploModel, Integer>{
+public interface ExemploRepository extends CrudRepository<Client, Integer>{
     
 }
