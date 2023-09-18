@@ -3,8 +3,11 @@ import { Typography, Button, Grid, TextField, Select, MenuItem } from '@mui/mate
 import fotoDeFundo from '../../assets/fundoCarro.png'
 import { useState } from 'react'
 
+
 export const CadastroAgente = () => {
   const [nome, setNome] = useState('');
+  const [rg, setRg] = useState('');
+  const [cpf, setCpf] = useState('');
   const [rua, setRua] = useState('');
   const [bairro, setBairro] = useState('');
   const [numero, setNumero] = useState('');
@@ -14,7 +17,9 @@ export const CadastroAgente = () => {
   const [senha, setSenha] = useState('');
   const [tipo, setTipo] = useState('');
 
-
+  const handleClick = () => {
+    alert('O botão foi clicado!');
+  };
 
   return (
   <Grid container component="main" sx={{ height: '100vh'}}>
@@ -40,6 +45,32 @@ export const CadastroAgente = () => {
                 autoFocus
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                fullWidth
+                name="RG"
+                label="RG"
+                type="number"
+                id="RG"
+                size="small"
+                value={rg}
+                onChange={(e) => setRg(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                fullWidth
+                name="CPF"
+                label="CPF"
+                type="number"
+                id="CPF"
+                size="small"
+                value={cpf}
+                onChange={(e) => setCpf(e.target.value)}
               />
             </Grid>
             
@@ -148,7 +179,7 @@ export const CadastroAgente = () => {
             </Grid>
 
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}  onClick={handleClick} >
               Cadastrar
           </Button>
         </Box>

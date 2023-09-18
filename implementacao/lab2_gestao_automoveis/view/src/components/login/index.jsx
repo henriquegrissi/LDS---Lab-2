@@ -9,6 +9,10 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const handleClick = () => {
+        alert('O botão foi clicado!');
+      };
+    
 
 
     return (
@@ -78,7 +82,7 @@ export const Login = () => {
                     />
                 </Grid>
                 </Grid>
-                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
+                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}  onClick={handleClick}>
                     Login
                 </Button>
             </Box>

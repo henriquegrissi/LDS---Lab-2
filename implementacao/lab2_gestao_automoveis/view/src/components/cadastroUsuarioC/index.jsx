@@ -4,9 +4,8 @@ import {Button} from '@mui/material';
 import { Grid, TextField} from "@mui/material";
 import fotoDeFundo from '../../assets/fundoCarro.png'
 import { useState } from 'react'
-
-
-export const CadastroCliente = () => {
+import { useApi } from '../../hook/userApi';
+export const CadastroCliente = async () => {
 
   const [nome, setNome] = useState('');
   const [rg, setRg] = useState('');
@@ -25,13 +24,53 @@ export const CadastroCliente = () => {
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setSenha] = useState('');
 
+  const handleClick = () => {
+    alert('O botão foi clicado!');
+  };
 
+  const rendimentosAuferidos = [];
 
+  const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
 
+  let rendimento;
+  
+  const user ={
+    nome, 
+    endereco,
+    login: email, 
+    senha,
+    entidadeEmpregaticia: profissao,
+    cpf,
+    rg,
+  };
+  
+  if (r1){
+    rendimento.fonte = f1;
+    rendimento.valor = v1;
+    rendimentosAuferidos.push(rendimento);
+  }
+  if (r2){
+    rendimento.fonte = f2;
+    rendimento.valor = v2;
+    rendimentosAuferidos.push(rendimento);
+  }
+  if (r3){
+    rendimento.fonte = f3;
+    rendimento.valor = v3;
+    rendimentosAuferidos.push(rendimento);
+  }
 
+  user.rendimentosAuferidos;
 
+  await useApi
+      .post('cliente/cadastrar', user)
+      .then(async _ => {
+        navigate('/login')
+       
+      })
+    
 
   return (
   <Grid container component="main" sx={{ height: '100vh'}}>
@@ -271,12 +310,12 @@ export const CadastroCliente = () => {
                 type="password"
                 id="password"
                 size="small"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}  onClick={handleClick} >
               Cadastrar
           </Button>
         </Box>
