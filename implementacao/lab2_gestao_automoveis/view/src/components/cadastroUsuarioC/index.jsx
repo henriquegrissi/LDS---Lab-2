@@ -38,6 +38,7 @@ export const CadastroCliente = () => {
       endereco,
       login: email, 
       senha,
+      profissao,
       entidadeEmpregaticia: profissao,
       cpf,
       rg,
