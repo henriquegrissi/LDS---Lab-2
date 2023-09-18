@@ -1,5 +1,6 @@
 package lds_lab2.lab2_gestao_automoveis.controller;
 
+import org.hibernate.mapping.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,15 +42,14 @@ public class ClientController {
         return clientRepository.save(updatedClient);
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable ClienteModel id) {
-        clientRepository.delete(id);
+    @DeleteMapping("/clientes/{cpf}")
+    public void delete(@PathVariable ClienteModel cpf) {
+        clientRepository.delete(cpf);
     }
 
-    @GetMapping("/user")
-    public void returnAll(){
-        clientRepository.findAll();
+    @GetMapping("/clientes")
+    public Iterable<ClienteModel> returnAll(){
+       return clientRepository.findAll();
     }
     
 }
