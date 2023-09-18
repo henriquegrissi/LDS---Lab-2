@@ -1,7 +1,6 @@
 import { Box } from "@mui/system"
 import { Typography, Button, Grid, TextField, Select, MenuItem } from '@mui/material';
 import fotoDeFundo from '../../assets/fundoCarro.png'
-import {Checkbox} from '@mui/material/';
 
 export const CadastroAgente = () => {
     /*const [role, setRole] = useState(''); 
