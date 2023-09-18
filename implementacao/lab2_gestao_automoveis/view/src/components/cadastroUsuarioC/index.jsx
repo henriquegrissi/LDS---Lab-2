@@ -5,7 +5,7 @@ import { Grid, TextField} from "@mui/material";
 import fotoDeFundo from '../../assets/fundoCarro.png'
 import { useState } from 'react'
 import { useApi } from '../../hook/userApi';
-export const CadastroCliente = async () => {
+export const CadastroCliente = () => {
 
   const [nome, setNome] = useState('');
   const [rg, setRg] = useState('');
@@ -26,50 +26,48 @@ export const CadastroCliente = async () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const handleClick = () => {
-    alert('O botão foi clicado!');
-  };
+  const handleClick = async () => {
+    const rendimentosAuferidos = [];
 
-  const rendimentosAuferidos = [];
-
-  const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
-
-  let rendimento;
+    const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
   
-  const user ={
-    nome, 
-    endereco,
-    login: email, 
-    senha,
-    entidadeEmpregaticia: profissao,
-    cpf,
-    rg,
-  };
+    let rendimento;
+    
+    const user ={
+      nome, 
+      endereco,
+      login: email, 
+      senha,
+      entidadeEmpregaticia: profissao,
+      cpf,
+      rg,
+    };
+    
+    if (r1){
+      rendimento.fonte = f1;
+      rendimento.valor = v1;
+      rendimentosAuferidos.push(rendimento);
+    }
+    if (r2){
+      rendimento.fonte = f2;
+      rendimento.valor = v2;
+      rendimentosAuferidos.push(rendimento);
+    }
+    if (r3){
+      rendimento.fonte = f3;
+      rendimento.valor = v3;
+      rendimentosAuferidos.push(rendimento);
+    }
   
-  if (r1){
-    rendimento.fonte = f1;
-    rendimento.valor = v1;
-    rendimentosAuferidos.push(rendimento);
-  }
-  if (r2){
-    rendimento.fonte = f2;
-    rendimento.valor = v2;
-    rendimentosAuferidos.push(rendimento);
-  }
-  if (r3){
-    rendimento.fonte = f3;
-    rendimento.valor = v3;
-    rendimentosAuferidos.push(rendimento);
-  }
-
-  user.rendimentosAuferidos;
-
-  await useApi
-      .post('cliente/cadastrar', user)
-      .then(async _ => {
-        navigate('/login')
-       
-      })
+    user.rendimentosAuferidos;
+  
+    await useApi
+        .post('cliente/cadastrar', user)
+        .then(async _ => {
+          navigate('/login')
+         
+        })  
+  };
     
 
   return (
