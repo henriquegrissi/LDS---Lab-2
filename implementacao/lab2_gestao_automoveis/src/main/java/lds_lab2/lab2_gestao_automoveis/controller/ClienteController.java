@@ -36,8 +36,8 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{cpf}")
-    public void delete(@PathVariable ClienteModel cpf) {
-        clientRepository.delete(cpf);
+    public void delete(String cpf) {
+        clientRepository.deleteById(cpf);
     }
 
     @GetMapping("/clientes")

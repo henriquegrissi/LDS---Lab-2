@@ -37,8 +37,8 @@ public class AgenteController {
     }
 
     @DeleteMapping("/{cpf}")
-    public void delete(@PathVariable AgenteModel cpf) {
-        agenteRepository.delete(cpf);
+    public void delete(String cpf) {
+        agenteRepository.deleteById(cpf);
     }
 
     @GetMapping("/clientes")
