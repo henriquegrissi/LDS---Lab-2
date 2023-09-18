@@ -19,7 +19,7 @@ import lds_lab2.lab2_gestao_automoveis.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("cliente")
-public class ClientController {
+public class ClienteController {
     @Autowired
     private ClienteRepository clientRepository;
 
