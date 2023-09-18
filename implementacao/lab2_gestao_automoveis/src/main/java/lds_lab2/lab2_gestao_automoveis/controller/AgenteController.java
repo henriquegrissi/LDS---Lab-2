@@ -35,9 +35,9 @@ public class AgenteController {
         return agenteRepository.save(updatedAgent);
     }
 
-    @DeleteMapping("/{cpf}")
-    public void delete(@PathVariable String cpf) {
-        agenteRepository.deleteById(cpf);
+    @DeleteMapping("/{cnpj}")
+    public void delete(@PathVariable String cnpj) {
+        agenteRepository.deleteById(cnpj);
     }
 
     @GetMapping("/clientes")

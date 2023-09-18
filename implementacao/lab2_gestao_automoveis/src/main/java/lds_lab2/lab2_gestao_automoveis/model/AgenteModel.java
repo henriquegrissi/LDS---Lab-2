@@ -11,6 +11,14 @@ public class AgenteModel extends UsuarioModel {
     private String cnpj;
     private String tipoAgente; //ajustar tipo dps
 
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
     public String getTipoAgente() {
         return tipoAgente;
     }
