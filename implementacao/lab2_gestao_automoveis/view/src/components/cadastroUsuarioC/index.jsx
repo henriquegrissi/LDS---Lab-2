@@ -31,7 +31,7 @@ export const CadastroCliente = () => {
 
     const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
   
-    let rendimento;
+    let rendimento = {};
     
     const user ={
       nome, 
@@ -44,17 +44,17 @@ export const CadastroCliente = () => {
     };
     
     if (r1){
-      rendimento.fonte = f1;
+      rendimento.fonte = r1;
       rendimento.valor = v1;
       rendimentosAuferidos.push(rendimento);
     }
     if (r2){
-      rendimento.fonte = f2;
+      rendimento.fonte = r2;
       rendimento.valor = v2;
       rendimentosAuferidos.push(rendimento);
     }
     if (r3){
-      rendimento.fonte = f3;
+      rendimento.fonte = r3;
       rendimento.valor = v3;
       rendimentosAuferidos.push(rendimento);
     }
@@ -65,7 +65,6 @@ export const CadastroCliente = () => {
         .post('cliente/cadastrar', user)
         .then(async _ => {
           navigate('/login')
-         
         })  
   };
     
