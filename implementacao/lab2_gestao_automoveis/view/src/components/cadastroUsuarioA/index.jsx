@@ -3,10 +3,33 @@ import { Typography, Button, Grid, TextField, Select, MenuItem } from '@mui/mate
 import fotoDeFundo from '../../assets/fundoCarro.png'
 
 export const CadastroAgente = () => {
-    /*const [role, setRole] = useState(''); 
+    /*const [usuario, setUsuario] = useState({
+      nome: '',
+      rua: '',
+      bairro: '',
+      numero: '',
+      cidade: '',
+      estado: '',
+      email: '',
+      password: '',
+      tipo: '',
 
-    const handleRoleChange = (event) => {
-      setRole(event.target.value); 
+     
+    });
+
+    const handleChange = (event) => {
+      setUsuario({
+        ...usuario,
+        [event.target.nome]: event.target.value
+        [event.target.rua]: event.target.value
+        [event.target.bairro]: event.target.value
+        [event.target.numero]: event.target.value
+        [event.target.cidade]: event.target.value
+        [event.target.estado]: event.target.value
+        [event.target.email]: event.target.value
+        [event.target.password]: event.target.value
+        [event.target.tipo]: event.target.value
+      });
     };*/
 
 
@@ -117,6 +140,7 @@ export const CadastroAgente = () => {
                     name="role"
                     label="Tipo de usuário"
                     size="small"
+                    id="tipo"
                 >
                     <MenuItem value="cliente">Empresa</MenuItem>
                     <MenuItem value="agente">Banco</MenuItem>

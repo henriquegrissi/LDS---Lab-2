@@ -6,6 +6,43 @@ import fotoDeFundo from '../../assets/fundoCarro.png'
 
 
 export const CadastroCliente = () => {
+     /*const [usuario, setUsuario] = useState({
+      nome: '',
+      rg: '',
+      cpf: '',
+      profissao: '',
+      rendimento: '',
+      rua: '',
+      bairro: '',
+      numero: '',
+      cidade: '',
+      estado: '',
+      email: '',
+      password: '',
+     
+    });
+
+    const handleChange = (event) => {
+      setUsuario({
+        ...usuario,
+        [event.target.name]: event.target.value
+        [event.target.rg]: event.target.value
+        [event.target.cpf]: event.target.value
+        [event.target.profissao]: event.target.value
+        [event.target.rendimento]: event.target.value
+        [event.target.rua]: event.target.value
+        [event.target.bairro]: event.target.value
+        [event.target.numero]: event.target.value
+        [event.target.cidade]: event.target.value
+        [event.target.estado]: event.target.value
+        [event.target.email]: event.target.value
+        [event.target.password]: event.target.value
+      });
+    };*/
+
+
+
+
     return (
     <Grid container component="main" sx={{ height: '100vh'}}>
      

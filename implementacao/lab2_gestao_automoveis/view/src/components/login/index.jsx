@@ -6,6 +6,25 @@ import fotoDeFundo from '../../assets/fundoCarro.png'
 
 
 export const Login = () => {
+    /*const [usuario, setUsuario] = useState({
+      login: '',
+      senha: '',
+    });
+
+    const handleChange = (event) => {
+      setUsuario({
+        ...usuario,
+        [event.target.login]: event.target.value
+        [event.target.rua]: event.target.value
+
+        [event.target.senha]: event.target.value
+        [event.target.tipo]: event.target.value
+      });
+    };*/
+
+
+
+
     return (
       <Grid container component="main" sx={{ height: '100vh'}}>
      
@@ -44,8 +63,6 @@ export const Login = () => {
               </Typography>
            
               <Grid container spacing={2}>
-               
-                
                
                 <Grid item xs={12}>
                   <TextField
