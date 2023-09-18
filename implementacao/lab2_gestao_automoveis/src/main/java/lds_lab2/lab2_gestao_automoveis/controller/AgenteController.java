@@ -36,15 +36,14 @@ public class AgenteController {
         return agenteRepository.save(updatedAgent);
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable AgenteModel id) {
-        agenteRepository.delete(id);
+    @DeleteMapping("/{cpf}")
+    public void delete(@PathVariable AgenteModel cpf) {
+        agenteRepository.delete(cpf);
     }
 
-    @GetMapping("/user")
-    public void returnAll(){
-        agenteRepository.findAll();
+    @GetMapping("/clientes")
+    public Iterable<AgenteModel> returnAll(){
+       return agenteRepository.findAll();
     }
     
 }
