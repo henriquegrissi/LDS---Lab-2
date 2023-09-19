@@ -63,7 +63,7 @@ export const CadastroCliente = () => {
     user.rendimentosAuferidos;
   
     await useApi
-        .post('cliente/cadastrar', user)
+        .post('cliente/login', user)
         .then(async _ => {
           navigate('/login')
         })  

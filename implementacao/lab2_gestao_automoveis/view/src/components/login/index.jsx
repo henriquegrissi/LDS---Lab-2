@@ -4,14 +4,25 @@ import {Button} from '@mui/material';
 import { Grid, TextField} from "@mui/material";
 import fotoDeFundo from '../../assets/fundoCarro.png'
 import { useState } from 'react'
+import { useApi } from '../../hook/userApi';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleClick = () => {
-        alert('O botão foi clicado!');
-      };
+    const handleClick = async () => {
+        const user ={
+            login: email, 
+            senha,
+        }
+
+        await useApi
+        .post('cliente/login', user)
+        .then(async _ => {
+          navigate('/login')
+        })  
+    };
+    
     
 
 
