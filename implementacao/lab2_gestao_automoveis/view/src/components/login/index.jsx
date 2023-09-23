@@ -2,7 +2,7 @@ import { Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import {Button} from '@mui/material';
 import { Grid, TextField} from "@mui/material";
-import fotoDeFundo from '../../assets/fundoCarro.png'
+import fotoDeFundo from '../../assets/foto.png'
 import { useState } from 'react'
 import { useApi } from '../../hook/userApi';
 
@@ -22,10 +22,7 @@ export const Login = () => {
           navigate('/login')
         })  
     };
-    
-    
-
-
+       
     return (
         <Grid container component="main" sx={{ height: '100vh'}}>
         
