@@ -22,7 +22,7 @@ export const Barra = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Locadora
           </Typography>
           <Button color="inherit">Alugar</Button>
           <Button color="inherit">Pedidos</Button>
