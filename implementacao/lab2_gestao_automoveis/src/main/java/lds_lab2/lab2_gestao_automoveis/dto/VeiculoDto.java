@@ -8,7 +8,8 @@ public record VeiculoDto(
         @NotBlank String placa,
         @NotBlank String modelo,
         @NotBlank String ano,
-        boolean alugado
+        boolean alugado,
+        @NotBlank double valorAluguel
         ) {
 
 }

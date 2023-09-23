@@ -17,6 +17,7 @@ public class VeiculoModel {
     private String modelo;
     private String ano;
     private Boolean alugado;
+    private double valorAluguel;
 
     public String getMarca(){
         return this.marca;
@@ -56,5 +57,11 @@ public class VeiculoModel {
     
     public void setAlugado(Boolean alugado){
         this.alugado = alugado;
+    }
+    public void setValorAluguel(double valorAluguel){
+        this.valorAluguel = valorAluguel;
+    }
+    public double getValorAluguel(){
+        return this.valorAluguel;
     }
 }
