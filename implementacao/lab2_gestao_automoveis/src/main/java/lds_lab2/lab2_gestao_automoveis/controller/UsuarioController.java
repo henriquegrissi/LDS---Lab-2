@@ -25,7 +25,7 @@ public class UsuarioController {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @GetMapping("/login")
+    @GetMapping("/login/{login}/{senha}")
     public ResponseEntity<String> login(@PathVariable String login, @PathVariable String senha) {
         Optional<AgenteModel> agente = agenteRepository.findByLoginAndSenha(login, senha);
 
