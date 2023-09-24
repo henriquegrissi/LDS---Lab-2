@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import lds_lab2.lab2_gestao_automoveis.model.AgenteModel;
 
 @Repository
-public interface AgenteRepository extends JpaRepository<AgenteModel, String>{
+public interface AgenteRepository extends JpaRepository<AgenteModel, Integer>{
+    public Optional<AgenteModel> findByLogin(String login);
     public Optional<AgenteModel> findByLoginAndSenha(String login, String senha);
 }

@@ -1,6 +1,7 @@
 package lds_lab2.lab2_gestao_automoveis.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import lds_lab2.lab2_gestao_automoveis.dto.ClienteDto;
+import lds_lab2.lab2_gestao_automoveis.model.AgenteModel;
 import lds_lab2.lab2_gestao_automoveis.model.ClienteModel;
 import lds_lab2.lab2_gestao_automoveis.model.RendimentoModel;
+import lds_lab2.lab2_gestao_automoveis.repository.AgenteRepository;
 import lds_lab2.lab2_gestao_automoveis.repository.ClienteRepository;
 import lds_lab2.lab2_gestao_automoveis.repository.RendimentoRepository;
 
@@ -27,26 +30,36 @@ import lds_lab2.lab2_gestao_automoveis.repository.RendimentoRepository;
 @CrossOrigin(origins = "http://localhost:5173")
 public class ClienteController {
     @Autowired
-    private ClienteRepository clientRepository;
+    private ClienteRepository clienteRepository;
 
     @Autowired
     private RendimentoRepository rendimentoRepository;
 
+    @Autowired
+    private AgenteRepository agenteRepository;
+
     @PostMapping("/cadastrar")
-    public ResponseEntity<ClienteModel> cadastrar(@RequestBody @Valid ClienteDto clienteDto){
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid ClienteDto clienteDto){
         ClienteModel clienteModel = new ClienteModel();
         BeanUtils.copyProperties(clienteDto, clienteModel);
 
-        if(clienteDto.rendimentosAuferidos() != null && clienteDto.rendimentosAuferidos().size() > 3){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(clienteModel);
+        Optional<AgenteModel> agente = agenteRepository.findByLogin(clienteDto.login());
+        Optional<ClienteModel> cliente = clienteRepository.findByLogin(clienteDto.login());
+
+        if(agente.isPresent() || cliente.isPresent()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível realizar o cadastro, o login informado já existe.");
         }
 
-        ClienteModel clienteCadastrado = clientRepository.save(clienteModel);
+        if(clienteDto.rendimentosAuferidos() != null && clienteDto.rendimentosAuferidos().size() > 3){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O máximo de rendimentos permitidos é 3");
+        }
 
+        ClienteModel clienteCadastrado = clienteRepository.save(clienteModel);
+        
         List<RendimentoModel> rendimentosAuferidos = clienteDto.rendimentosAuferidos();
         if(clienteDto.rendimentosAuferidos() != null && clienteDto.rendimentosAuferidos().size() > 0){
             for (RendimentoModel rendimento : rendimentosAuferidos) {
-                rendimento.setIdCliente(clienteCadastrado.getCpf());
+                rendimento.setCliente(clienteCadastrado);
                 rendimentoRepository.save(rendimento);
             }
         }
@@ -56,16 +69,16 @@ public class ClienteController {
 
     @PostMapping("/update")
     public ClienteModel updateClient(@RequestBody ClienteModel updatedClient){
-        return clientRepository.save(updatedClient);
+        return clienteRepository.save(updatedClient);
     }
 
-    @DeleteMapping("/{cpf}")
-    public void delete(@PathVariable String cpf) {
-        clientRepository.deleteById(cpf);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        clienteRepository.deleteById(id);
     }
 
     @GetMapping("/clientes")
     public Iterable<ClienteModel> returnAll(){
-       return clientRepository.findAll();
+       return clienteRepository.findAll();
     }
 }

@@ -58,9 +58,11 @@ public class VeiculoModel {
     public void setAlugado(Boolean alugado){
         this.alugado = alugado;
     }
+
     public void setValorAluguel(double valorAluguel){
         this.valorAluguel = valorAluguel;
     }
+    
     public double getValorAluguel(){
         return this.valorAluguel;
     }

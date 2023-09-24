@@ -1,5 +1,7 @@
 package lds_lab2.lab2_gestao_automoveis.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import lds_lab2.lab2_gestao_automoveis.dto.AgenteDto;
 import lds_lab2.lab2_gestao_automoveis.model.AgenteModel;
+import lds_lab2.lab2_gestao_automoveis.model.ClienteModel;
 import lds_lab2.lab2_gestao_automoveis.repository.AgenteRepository;
+import lds_lab2.lab2_gestao_automoveis.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("agente")
@@ -23,10 +27,21 @@ public class AgenteController {
     @Autowired
     private AgenteRepository agenteRepository;
 
+    @Autowired
+    private ClienteRepository clienteRepository;
+
     @PostMapping("/cadastrar")
-    public ResponseEntity<AgenteModel> cadastrar(@RequestBody @Valid AgenteDto agenteDto){
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid AgenteDto agenteDto){
         AgenteModel agenteModel = new AgenteModel();
         BeanUtils.copyProperties(agenteDto, agenteModel);
+
+        Optional<AgenteModel> agente = agenteRepository.findByLogin(agenteDto.login());
+        Optional<ClienteModel> cliente = clienteRepository.findByLogin(agenteDto.login());
+
+        if(agente.isPresent() || cliente.isPresent()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível realizar o cadastro, o login informado já existe.");
+        }
+
         return ResponseEntity.status(HttpStatus.CREATED).body(agenteRepository.save(agenteModel));
     }
 
@@ -35,9 +50,9 @@ public class AgenteController {
         return agenteRepository.save(updatedAgent);
     }
 
-    @DeleteMapping("/{cnpj}")
-    public void delete(@PathVariable String cnpj) {
-        agenteRepository.deleteById(cnpj);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        agenteRepository.deleteById(id);
     }
 
     @GetMapping("/clientes")

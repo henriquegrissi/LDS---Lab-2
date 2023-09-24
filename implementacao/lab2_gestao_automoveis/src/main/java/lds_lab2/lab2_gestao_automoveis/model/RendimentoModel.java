@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,7 +16,10 @@ public class RendimentoModel {
     private Long id;
     private String fonte;
     private double valor;
-    private String idCliente;
+
+    @ManyToOne
+    @JoinColumn(name = "cpf", referencedColumnName = "cpf")
+    private ClienteModel cliente;    
 
     public Long getId() {
         return this.id;
@@ -40,11 +45,11 @@ public class RendimentoModel {
         this.valor = valor;
     }
 
-    public String getIdCliente() {
-        return this.idCliente;
+    public ClienteModel getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 }

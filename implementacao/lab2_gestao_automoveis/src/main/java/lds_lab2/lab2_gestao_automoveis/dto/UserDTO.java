@@ -6,5 +6,4 @@ public record UserDTO(
         String endereco,
         String login,
         String senha) {
-
 }
