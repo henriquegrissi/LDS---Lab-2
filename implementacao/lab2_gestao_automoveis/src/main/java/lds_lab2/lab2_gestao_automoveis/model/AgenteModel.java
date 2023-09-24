@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lds_lab2.lab2_gestao_automoveis.enums.TipoAgente;
 
 @Entity
 @Table(name = "AGENTE")
@@ -16,7 +17,7 @@ public class AgenteModel extends UsuarioModel {
 
     @Column(unique = true)
     private String cnpj;
-    private String tipoAgente; //ajustar tipo dps
+    private TipoAgente tipoAgente;
 
     public String getCnpj() {
         return cnpj;
@@ -26,11 +27,11 @@ public class AgenteModel extends UsuarioModel {
         this.cnpj = cnpj;
     }
 
-    public String getTipoAgente() {
+    public TipoAgente getTipoAgente() {
         return tipoAgente;
     }
 
-    public void setTipoAgente(String profissao) {
-        this.tipoAgente = profissao;
+    public void setTipoAgente(TipoAgente tipoAgente) {
+        this.tipoAgente = tipoAgente;
     }    
 }
