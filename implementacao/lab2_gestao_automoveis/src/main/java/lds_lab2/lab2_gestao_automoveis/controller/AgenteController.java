@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import lds_lab2.lab2_gestao_automoveis.dto.AgenteDto;
 import lds_lab2.lab2_gestao_automoveis.model.AgenteModel;
 import lds_lab2.lab2_gestao_automoveis.model.ClienteModel;
 import lds_lab2.lab2_gestao_automoveis.repository.AgenteRepository;
 import lds_lab2.lab2_gestao_automoveis.repository.ClienteRepository;
+import lds_lab2.lab2_gestao_automoveis.request.AgenteRequest;
 
 @RestController
 @RequestMapping("agente")
@@ -31,12 +32,12 @@ public class AgenteController {
     private ClienteRepository clienteRepository;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid AgenteDto agenteDto){
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid AgenteRequest agenteRequest){
         AgenteModel agenteModel = new AgenteModel();
-        BeanUtils.copyProperties(agenteDto, agenteModel);
+        BeanUtils.copyProperties(agenteRequest, agenteModel);
 
-        Optional<AgenteModel> agente = agenteRepository.findByLogin(agenteDto.login());
-        Optional<ClienteModel> cliente = clienteRepository.findByLogin(agenteDto.login());
+        Optional<AgenteModel> agente = agenteRepository.findByLogin(agenteRequest.login());
+        Optional<ClienteModel> cliente = clienteRepository.findByLogin(agenteRequest.login());
 
         if(agente.isPresent() || cliente.isPresent()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não foi possível realizar o cadastro, o login informado já existe.");
@@ -45,7 +46,7 @@ public class AgenteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(agenteRepository.save(agenteModel));
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public AgenteModel updateClient(@RequestBody AgenteModel updatedAgent){
         return agenteRepository.save(updatedAgent);
     }

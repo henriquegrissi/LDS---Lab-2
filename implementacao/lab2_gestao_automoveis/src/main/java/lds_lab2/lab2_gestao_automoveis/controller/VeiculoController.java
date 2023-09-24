@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import lds_lab2.lab2_gestao_automoveis.dto.VeiculoDto;
 import lds_lab2.lab2_gestao_automoveis.model.VeiculoModel;
 import lds_lab2.lab2_gestao_automoveis.repository.VeiculoRepository;
+import lds_lab2.lab2_gestao_automoveis.request.VeiculoRequest;
 
 @RestController
 @RequestMapping("veiculo")
@@ -22,9 +22,9 @@ public class VeiculoController {
     private VeiculoRepository veiculoRepository;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<VeiculoModel> cadastrar(@RequestBody @Valid VeiculoDto veiculoDto) { 
+    public ResponseEntity<VeiculoModel> cadastrar(@RequestBody @Valid VeiculoRequest veiculoRequest) { 
         VeiculoModel veiculoModel = new VeiculoModel();
-        BeanUtils.copyProperties(veiculoDto, veiculoModel);
+        BeanUtils.copyProperties(veiculoRequest, veiculoModel);
 
         VeiculoModel veiculoCadastrado = veiculoRepository.save(veiculoModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(veiculoCadastrado);

@@ -1,15 +1,15 @@
-package lds_lab2.lab2_gestao_automoveis.dto;
+package lds_lab2.lab2_gestao_automoveis.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-public record VeiculoDto(
-        Long id,
+public record VeiculoRequest(
         @NotBlank String marca,
         @NotBlank String placa,
         @NotBlank String modelo,
         @NotBlank String ano,
         boolean alugado,
-        @NotBlank double valorAluguel
+        @NotNull double valorAluguel
         ) {
 
 }

@@ -18,7 +18,7 @@ public class RendimentoModel {
     private double valor;
 
     @ManyToOne
-    @JoinColumn(name = "cpf", referencedColumnName = "cpf")
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private ClienteModel cliente;    
 
     public Long getId() {
