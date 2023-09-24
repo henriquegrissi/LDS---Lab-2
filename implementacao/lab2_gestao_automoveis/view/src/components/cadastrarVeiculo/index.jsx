@@ -80,6 +80,17 @@ export const CadastroVeiculo = () => {
                             size="small"
                         />
                     </Grid>
+                        
+                    <Grid item xs={12} >
+                        <TextField
+                            required
+                            fullWidth
+                            name="valor"
+                            label="Preço"
+                            type="text"
+                            size="small"
+                        />
+                    </Grid>
 
                     <Grid item xs={12}>
                         <Button type="submit" fullWidth variant="contained" >
