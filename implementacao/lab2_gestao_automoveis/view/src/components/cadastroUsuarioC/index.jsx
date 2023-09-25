@@ -4,13 +4,12 @@ import {Button} from '@mui/material';
 import { Grid, TextField} from "@mui/material";
 import fotoDeFundo from '../../assets/fundoCarro.png'
 import { useState } from 'react'
-import { useApi } from '../../hook/userApi';
 import { useNavigate } from 'react-router-dom';
-
+import { useApi } from '../../hook/userApi';
 
 export const CadastroCliente = () => {
   const navigate = useNavigate();
-
+  
   const [nome, setNome] = useState('');
   const [rg, setRg] = useState('');
   const [cpf, setCpf] = useState('');
@@ -65,7 +64,6 @@ export const CadastroCliente = () => {
     }
   
     user.rendimentosAuferidos = rendimentosAuferidos;
-    debugger; 
 
     try{
       await useApi.post('cliente/cadastrar', user);
@@ -74,7 +72,6 @@ export const CadastroCliente = () => {
     }catch(error){
       console.error('Erro:', error);
     }
-
   };
     
 
@@ -158,6 +155,7 @@ export const CadastroCliente = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 fullWidth
                 name="ra1"
                 label="RA nome: "
@@ -170,6 +168,7 @@ export const CadastroCliente = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 fullWidth
                 name="valor1"
                 label="Valor: "
@@ -229,8 +228,8 @@ export const CadastroCliente = () => {
             </Grid>
             <Grid item xs={12} sm={7}>
               <TextField
-                required
                 fullWidth
+                required
                 name="rua"
                 label="Rua"
                 type="text"
@@ -242,8 +241,8 @@ export const CadastroCliente = () => {
             </Grid>
             <Grid item xs={12} sm={5}>
               <TextField
-              required
                 fullWidth
+                required
                 name="bairro"
                 label="Bairro"
                 type="text"
@@ -255,8 +254,8 @@ export const CadastroCliente = () => {
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
-                required
                 fullWidth
+                required
                 name="numero"
                 label="Nº"
                 type="number"

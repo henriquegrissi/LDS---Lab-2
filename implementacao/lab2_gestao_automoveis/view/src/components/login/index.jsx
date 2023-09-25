@@ -45,7 +45,7 @@ export const Login = () => {
                 </Button>
             </Grid>
 
-            <Grid item xs={12} sm={8} md={5}  elevation={6} square>
+            <Grid item xs={12} sm={8} md={5} elevation={6}>
                 <Box sx={{ my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 
                     <Typography variant="h4" fontWeight="fontWeightMedium" mb={3}>
