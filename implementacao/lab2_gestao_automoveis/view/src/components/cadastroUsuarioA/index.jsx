@@ -36,7 +36,7 @@ export const CadastroAgente = () => {
     try{
       await useApi.post('agente/cadastrar', user);
       alert('Agente cadastrado com sucesso');
-      navigate('/login');
+      navigate('/');
     }catch(error){
       console.error('Erro:', error);
     }

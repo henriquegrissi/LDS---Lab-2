@@ -23,6 +23,13 @@ public class AgenteModel extends UsuarioModel {
     @Enumerated(EnumType.STRING)
     private TipoAgente tipoAgente;
 
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCnpj() {
         return cnpj;
     }

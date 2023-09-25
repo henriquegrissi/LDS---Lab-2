@@ -69,7 +69,7 @@ export const CadastroCliente = () => {
     try{
       await useApi.post('cliente/cadastrar', user);
       alert('Cliente cadastrado com sucesso');
-      navigate('/login');
+      navigate('/');
     }catch(error){
       console.error('Erro:', error);
     }
@@ -81,7 +81,6 @@ export const CadastroCliente = () => {
     
     <Grid item xs={12} sm={8} md={5} >
       <Box>
-        
         <Box component="form"   sx={{my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center',}} >
           <Typography variant="h4" fontWeight="fontWeightMedium" mb={3}>
             Realize seu cadastro

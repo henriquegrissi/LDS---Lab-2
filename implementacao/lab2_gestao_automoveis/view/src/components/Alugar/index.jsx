@@ -27,11 +27,10 @@ export const HomeCliente = () => {
 
   const handleConfirm = () => {
     const requestBody = {
-      idCliente: 3, 
+      idCliente: localStorage.getItem("id"), 
       idVeiculo: selectedRow.id, 
       quantidadeDeDias: parseInt(quantity, 10),
     };
-    
     const response = useApi.post('/pedido/cadastrar', requestBody)
     .then((response) => {
       console.log('Pedido criado com sucesso:', response.data);

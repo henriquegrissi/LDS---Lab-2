@@ -23,17 +23,31 @@ export const Login = () => {
             const response = await useApi.post('usuario/login', user);
             const tipoCadastro = response.data.tipoCadastro;
             if(tipoCadastro){
-                localStorage.setItem("tipoCadastro",response.data.tipoCadastro);
-                if(tipoCadastro === 'Cliente')
+                localStorage.setItem("tipoCadastro",tipoCadastro);
+                if(tipoCadastro === 'Cliente'){
+                    localStorage.setItem("id", response.data.cliente.id);
                     navigate('/alugar')
-                if(tipoCadastro === 'Agente')
+                }
+                if(tipoCadastro === 'Agente'){
+                    localStorage.setItem("id", response.data.agente.id);
                     navigate('/analisar')
+                }
             }
           }catch(error){
             alert('Erro ao efetuar login! Verifique os dados')
             console.error('Erro:', error);
           } 
     };
+
+    const handleClick2 = async (e) => {
+        e.preventDefault();
+        navigate('/agente/cadastro');
+    }
+
+    const handleClick3 = async (e) => {
+        e.preventDefault();
+        navigate('/cliente/cadastro');
+    }    
        
     return (
         <Grid container component="main" sx={{ height: '100vh'}}>
@@ -52,9 +66,12 @@ export const Login = () => {
                     Não possui conta?
                 </Typography>
                 
-                <Button type="submit" size="medium"  variant="outlined" sx={{ width: '200px',  color: "white" }} >
-                    cadastrar
+                <Button type="submit" size="medium"  variant="outlined" sx={{ width: '200px', marginBottom: '15px', color: "white" }} onClick={handleClick2} >
+                    cadastrar agente
                 </Button>
+                <Button type="submit" size="medium"  variant="outlined" sx={{ width: '200px',  color: "white" }} onClick={handleClick3} >
+                    cadastrar cliente
+                </Button>                
             </Grid>
 
             <Grid item xs={12} sm={8} md={5} elevation={6}>
