@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Button } from '@mui/material';
-import {Barra} from '../navBar/index'
+import {BarraAgente} from '../navBarAgente/index'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -37,7 +37,7 @@ export const HomeAgente = () => {
   return (
     <Paper elevation={3}  sx={{my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
       <Grid sx={{ position: 'fixed', top: 0, bottom: 0, left: 0, right: 0 }}>
-        <Barra />
+        <BarraAgente />
       </Grid>
     
         <Typography variant="h4" fontWeight="fontWeightMedium" mb={3}>
