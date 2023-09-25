@@ -4,19 +4,21 @@ import {Button} from '@mui/material';
 import { Grid, TextField} from "@mui/material";
 import fotoDeFundo from '../../assets/foto3.jpg'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useApi } from '../../hook/userApi';
 
 export const CadastroVeiculo = () => {
-
+    const navigate = useNavigate();
 
     const [matricula, setMatricula] = useState('');
     const [ano, setAno] = useState('');
     const [marca, setMarca] = useState('');
     const [modelo, setModelo] = useState('');
     const [placa, setPlaca] = useState('');
-    const [valor, setValor] = useState('');
+    const [valorAluguel, setValorAluguel] = useState('');
 
-    const handleClick = async () => {
+    const handleClick = async (e) => {
+        e.preventDefault();
 
         const veiculo={
             matricula,
@@ -24,14 +26,18 @@ export const CadastroVeiculo = () => {
             marca,
             modelo,
             placa,
-            valor,
+            valorAluguel,
         }
 
-        await useApi //conferir essa rota
-            .post('cadastrar', veiculo)
-            .then(async _ => {
-                navigate('/cadastrar')
-            })
+        try{
+            await useApi.post('veiculo/cadastrar', veiculo);
+            alert('Veiculo cadastrado com sucesso');
+            navigate('/analisar');
+          }catch(error){
+            console.error('Erro:', error);
+          }
+
+      
     }
 
 
@@ -64,6 +70,9 @@ export const CadastroVeiculo = () => {
                             fullWidth
                             label="Matricula" 
                             size="small"
+                            type="text"
+                            value={matricula}
+                            onChange={(e) => setMatricula(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -72,8 +81,10 @@ export const CadastroVeiculo = () => {
                             fullWidth
                             name="ano"
                             label="Ano"
-                            type="string"
+                            type="text"
                             size="small"
+                            value={ano}
+                            onChange={(e) => setAno(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -84,6 +95,8 @@ export const CadastroVeiculo = () => {
                             label="Marca"
                             type="text"
                             size="small"
+                            value={marca}
+                            onChange={(e) => setMarca(e.target.value)}
                         />
                     </Grid>
                     
@@ -95,6 +108,8 @@ export const CadastroVeiculo = () => {
                             label="Modelo"
                             type="text"
                             size="small"
+                            value={modelo}
+                            onChange={(e) => setModelo(e.target.value)}
                         />
                     </Grid>
                         
@@ -106,6 +121,8 @@ export const CadastroVeiculo = () => {
                             label="Placa"
                             type="text"
                             size="small"
+                            value={placa}
+                            onChange={(e) => setPlaca(e.target.value)}
                         />
                     </Grid>
                         
@@ -115,13 +132,15 @@ export const CadastroVeiculo = () => {
                             fullWidth
                             name="valor"
                             label="Preço"
-                            type="text"
+                            type="number"
                             size="small"
+                            value={valorAluguel}
+                            onChange={(e) => setValorAluguel(e.target.value)}
                         />
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Button type="submit" fullWidth variant="contained" >
+                        <Button type="submit" fullWidth variant="contained" onClick={handleClick}>
                         Cadastrar veículo
                         </Button>
                     </Grid>

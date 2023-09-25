@@ -12,6 +12,7 @@ public class VeiculoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String matricula;
     private String placa;
     private String marca;
     private String modelo;
@@ -65,5 +66,13 @@ public class VeiculoModel {
     
     public double getValorAluguel(){
         return this.valorAluguel;
+    }
+
+    public String getMatricula(){
+        return this.matricula;
+    }
+
+    public void setMatricula(String matricula){
+        this.matricula = matricula;
     }
 }

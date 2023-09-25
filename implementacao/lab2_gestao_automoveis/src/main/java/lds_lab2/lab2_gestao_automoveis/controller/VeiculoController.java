@@ -25,8 +25,10 @@ public class VeiculoController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<VeiculoModel> cadastrar(@RequestBody @Valid VeiculoRequest veiculoRequest) { 
+        
         VeiculoModel veiculoModel = new VeiculoModel();
         BeanUtils.copyProperties(veiculoRequest, veiculoModel);
+        veiculoModel.setAlugado(false);
 
         VeiculoModel veiculoCadastrado = veiculoRepository.save(veiculoModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(veiculoCadastrado);
