@@ -35,12 +35,13 @@ public class UsuarioController {
         Optional<AgenteModel> agente = agenteRepository.findByLoginAndSenha(login, senha);
 
         if (agente.isPresent()) {
-            return ResponseEntity.ok(agente);
+            LoginResponse response = new LoginResponse(agente.get(), null, "Agente");
+            return ResponseEntity.ok(response);
         } else {
             Optional<ClienteModel> cliente = clienteRepository.findByLoginAndSenha(login, senha);
 
             if (cliente.isPresent()) {
-                LoginResponse response = new LoginResponse(cliente.get(), "Cliente");
+                LoginResponse response = new LoginResponse(null, cliente.get(), "Cliente");
                 return ResponseEntity.ok(response);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não encontrado! Login ou senha inválidos");
