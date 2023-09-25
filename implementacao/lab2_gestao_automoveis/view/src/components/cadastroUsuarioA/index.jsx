@@ -2,12 +2,12 @@ import { Box } from "@mui/system"
 import { Typography, Button, Grid, TextField, Select, MenuItem } from '@mui/material';
 import fotoDeFundo from '../../assets/fundoCarro.png'
 import { useState } from 'react'
+import { useApi } from '../../hook/userApi';
 
 
 export const CadastroAgente = () => {
   const [nome, setNome] = useState('');
-  const [rg, setRg] = useState('');
-  const [cpf, setCpf] = useState('');
+  const [cnpj, setCnpj] = useState('');
   const [rua, setRua] = useState('');
   const [bairro, setBairro] = useState('');
   const [numero, setNumero] = useState('');
@@ -17,8 +17,28 @@ export const CadastroAgente = () => {
   const [senha, setSenha] = useState('');
   const [tipo, setTipo] = useState('');
 
-  const handleClick = () => {
-    alert('O botão foi clicado!');
+  const handleClick = async () => {
+    const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
+    const user ={
+      nome, 
+      cnpj,
+      endereco,
+      login: email,
+      senha,
+      tipo, // confirmar esse campo
+    }
+
+    const res = await useApi.post('agente/cadastrar', usuario)
+    console.log(res);
+/*
+    await useApi
+        .post('agente/cadastrar', user)
+        .then(async _ => {
+          //navigate('/analisar')
+          
+        })  */
+
+    
   };
 
   return (
@@ -39,7 +59,6 @@ export const CadastroAgente = () => {
                 name="Nome"
                 required
                 fullWidth
-                id="Nome"
                 label="Nome"
                 size="small"
                 autoFocus
@@ -47,40 +66,24 @@ export const CadastroAgente = () => {
                 onChange={(e) => setNome(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} >
               <TextField
                 required
                 fullWidth
-                name="RG"
-                label="RG"
-                type="number"
-                id="RG"
+                name="cnpj"
+                label="CNPJ"
+                type="text"
                 size="small"
-                value={rg}
-                onChange={(e) => setRg(e.target.value)}
+                value={cnpj}
+                onChange={(e) => setCnpj(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                name="CPF"
-                label="CPF"
-                type="number"
-                id="CPF"
-                size="small"
-                value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
-              />
-            </Grid>
-            
             <Grid item xs={12} sm={7}>
               <TextField
                 fullWidth
                 name="rua"
                 label="Rua"
                 type="text"
-                id="rua"
                 size="small"
                 value={rua}
                 onChange={(e) => setRua(e.target.value)}

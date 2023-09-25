@@ -7,6 +7,34 @@ import { useState } from 'react'
 import { useApi } from '../../hook/userApi';
 
 export const CadastroVeiculo = () => {
+
+
+    const [matricula, setMatricula] = useState('');
+    const [ano, setAno] = useState('');
+    const [marca, setMarca] = useState('');
+    const [modelo, setModelo] = useState('');
+    const [placa, setPlaca] = useState('');
+    const [valor, setValor] = useState('');
+
+    const handleClick = async () => {
+
+        const veiculo={
+            matricula,
+            ano,
+            marca,
+            modelo,
+            placa,
+            valor,
+        }
+
+        await useApi //conferir essa rota
+            .post('cadastrar', veiculo)
+            .then(async _ => {
+                navigate('/cadastrar')
+            })
+    }
+
+
   
   return (
     <Grid container component="main" sx={{ height: '100vh'}}>
