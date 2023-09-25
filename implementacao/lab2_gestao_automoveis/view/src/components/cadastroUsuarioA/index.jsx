@@ -2,10 +2,13 @@ import { Box } from "@mui/system"
 import { Typography, Button, Grid, TextField, Select, MenuItem } from '@mui/material';
 import fotoDeFundo from '../../assets/fundoCarro.png'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useApi } from '../../hook/userApi';
 
 
 export const CadastroAgente = () => {
+  const navigate = useNavigate();
+
   const [nome, setNome] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [rua, setRua] = useState('');
@@ -18,6 +21,7 @@ export const CadastroAgente = () => {
   const [tipo, setTipo] = useState('');
 
   const handleClick = async () => {
+    //debugger;
     const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
     const user ={
       nome, 
@@ -25,20 +29,19 @@ export const CadastroAgente = () => {
       endereco,
       login: email,
       senha,
-      tipo, // confirmar esse campo
+      tipoAgente: tipo, // confirmar esse campo
+    };
+    debugger;
+    console.log(user);
+    
+    try{
+      await useApi.post('agente/cadastrar', user);
+      alert('Agente cadastrado com sucesso');
+      navigate('/login');
+    }catch(error){
+      console.error('Erro:', error);
     }
 
-    const res = await useApi.post('agente/cadastrar', usuario)
-    console.log(res);
-/*
-    await useApi
-        .post('agente/cadastrar', user)
-        .then(async _ => {
-          //navigate('/analisar')
-          
-        })  */
-
-    
   };
 
   return (
@@ -80,6 +83,7 @@ export const CadastroAgente = () => {
             </Grid>
             <Grid item xs={12} sm={7}>
               <TextField
+                required
                 fullWidth
                 name="rua"
                 label="Rua"
@@ -92,6 +96,7 @@ export const CadastroAgente = () => {
             <Grid item xs={12} sm={5}>
               <TextField
                 fullWidth
+                required
                 name="bairro"
                 label="Bairro"
                 type="text"
@@ -104,6 +109,7 @@ export const CadastroAgente = () => {
             <Grid item xs={12} sm={4}>
               <TextField
                 fullWidth
+                required
                 name="numero"
                 label="Nº"
                 type="number"
@@ -115,6 +121,7 @@ export const CadastroAgente = () => {
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                required
                 fullWidth
                 name="cidade"
                 label="Cidade"
@@ -127,6 +134,7 @@ export const CadastroAgente = () => {
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                required
                 fullWidth
                 name="estado"
                 label="Estado"
@@ -176,8 +184,8 @@ export const CadastroAgente = () => {
                   value={tipo}
                   onChange={(e) => setTipo(e.target.value)}
               >
-                  <MenuItem value="cliente">Empresa</MenuItem>
-                  <MenuItem value="agente">Banco</MenuItem>
+                  <MenuItem value="Empresa">Empresa</MenuItem>
+                  <MenuItem value="Banco">Banco</MenuItem>
               </Select>
             </Grid>
 
