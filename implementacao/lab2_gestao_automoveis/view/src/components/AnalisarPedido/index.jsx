@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, Typography, Button } from '@mui/material';
 import {Barra} from '../navBar/index'
 import Table from '@mui/material/Table';
@@ -10,30 +9,26 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Switch from '@mui/material/Switch';
 import { Box } from "@mui/system"
-import {ModalDia} from '../modalDias/index'
-import { useState } from 'react'
+import { useEffect, useState } from 'react';
+import { useApi } from '../../hook/userApi';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-const createData = (
-  cliente,
-  modelo,
-  placa,
-  analise,
-
-) => {
-  return { cliente,modelo, placa, analise };
-};
-
-const rows = [
-  createData('Bárbara', 'Corolla', 'placa',   <Switch {...label} defaultChecked />),
-  createData('Laura', '320i', 'placa', <Switch {...label} defaultChecked />),
- 
-];
-
-
-
 export const HomeAgente = () => {
+  const [rows, setRows] = useState([]);
+
+  const listarPedidos = async () => {
+    try {
+      const response = await useApi.get('pedido/listar');
+      setRows(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar pedidos:', error);
+    }
+  }
+  useEffect(() => {
+    listarPedidos()
+  }, []);
+
   return (
     <Paper elevation={3}  sx={{my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
       <Grid sx={{ position: 'fixed', top: 0, bottom: 0, left: 0, right: 0 }}>
@@ -52,16 +47,20 @@ export const HomeAgente = () => {
                 <TableCell align="right">Cliente</TableCell>
                 <TableCell align="right">Modelo</TableCell>
                 <TableCell align="right">Placa</TableCell>
+                <TableCell align="right">Status</TableCell>
                 <TableCell align="right">Aprovado</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.matricula} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
-                  <TableCell component="th" scope="row" align="right">{row.cliente}</TableCell>
-                  <TableCell align="right">{row.modelo}</TableCell>
-                  <TableCell align="right">{row.placa}</TableCell>
-                  <TableCell align="right">{row.analise}</TableCell>
+                <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+                  <TableCell component="th" scope="row" align="right">{row.cliente.nome}</TableCell>
+                  <TableCell align="right">{row.veiculo.modelo}</TableCell>
+                  <TableCell align="right">{row.veiculo.placa}</TableCell>
+                  <TableCell align="right">{row.statusPedido}</TableCell>
+                  <TableCell align="right">
+                    <Switch {...label} defaultChecked />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

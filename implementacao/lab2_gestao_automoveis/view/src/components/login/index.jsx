@@ -5,24 +5,30 @@ import { Grid, TextField} from "@mui/material";
 import fotoDeFundo from '../../assets/foto.png'
 import { useState } from 'react'
 import { useApi } from '../../hook/userApi';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleClick = async () => {
+    const handleClick = async (e) => {
+        e.preventDefault();
         const user ={
             login: email, 
             senha: password,
         }
-        console.log(user);
 
         try{
             const response = await useApi.post('usuario/login', user);
-            if(response.data.tipoCadastro){
-                console.log(response.data.tipoCadastro)
+            const tipoCadastro = response.data.tipoCadastro;
+            if(tipoCadastro){
+                localStorage.setItem("tipoCadastro",response.data.tipoCadastro);
+                if(tipoCadastro === 'Cliente')
+                    navigate('/alugar')
+                if(tipoCadastro === 'Agente')
+                    navigate('/analisar')
             }
-            console.log(response);
           }catch(error){
             alert('Erro ao efetuar login! Verifique os dados')
             console.error('Erro:', error);
