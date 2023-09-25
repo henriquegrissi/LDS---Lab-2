@@ -1,6 +1,8 @@
 package lds_lab2.lab2_gestao_automoveis.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +30,7 @@ public class ContratoModel {
     @JoinColumn(name = "cliente_proprietario_id", referencedColumnName = "id")
     private ClienteModel proprietarioCliente;
     
+    @Enumerated(EnumType.STRING)
     private TipoContrato tipoContrato;
     private double valor;
 

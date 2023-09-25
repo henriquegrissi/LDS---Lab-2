@@ -20,8 +20,8 @@ export const CadastroAgente = () => {
   const [senha, setSenha] = useState('');
   const [tipo, setTipo] = useState('');
 
-  const handleClick = async () => {
-    //debugger;
+  const handleClick = async (e) => {
+    e.preventDefault();
     const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
     const user ={
       nome, 
@@ -29,9 +29,8 @@ export const CadastroAgente = () => {
       endereco,
       login: email,
       senha,
-      tipoAgente: tipo, // confirmar esse campo
+      tipoAgente: tipo,
     };
-    debugger;
     console.log(user);
     
     try{
@@ -58,10 +57,10 @@ export const CadastroAgente = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} >
               <TextField
-                autoComplete="given-name"
-                name="Nome"
                 required
+                name="Nome"
                 fullWidth
+                type="text"
                 label="Nome"
                 size="small"
                 autoFocus
@@ -100,7 +99,6 @@ export const CadastroAgente = () => {
                 name="bairro"
                 label="Bairro"
                 type="text"
-                id="bairro"
                 size="small"
                 value={bairro}
                 onChange={(e) => setBairro(e.target.value)}
@@ -113,7 +111,6 @@ export const CadastroAgente = () => {
                 name="numero"
                 label="Nº"
                 type="number"
-                id="numero"
                 size="small"
                 value={numero}
                 onChange={(e) => setNumero(e.target.value)}
@@ -126,7 +123,6 @@ export const CadastroAgente = () => {
                 name="cidade"
                 label="Cidade"
                 type="text"
-                id="cidade"
                 size="small"
                 value={cidade}
                 onChange={(e) => setCidade(e.target.value)}
@@ -139,7 +135,6 @@ export const CadastroAgente = () => {
                 name="estado"
                 label="Estado"
                 type="text"
-                id="estado"
                 size="small"
                 value={estado}
                 onChange={(e) => setEstado(e.target.value)}
@@ -190,7 +185,7 @@ export const CadastroAgente = () => {
             </Grid>
 
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}  onClick={handleClick} >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} onClick={handleClick} >
               Cadastrar
           </Button>
         </Box>

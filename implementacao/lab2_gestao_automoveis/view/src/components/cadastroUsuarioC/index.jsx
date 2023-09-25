@@ -29,7 +29,8 @@ export const CadastroCliente = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     const rendimentosAuferidos = [];
 
     const endereco = `Rua: ${rua}, Nº ${numero}, Bairro: ${bairro}, Cidade: ${cidade}, Estado: ${estado}`;
@@ -155,7 +156,6 @@ export const CadastroCliente = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required
                 fullWidth
                 name="ra1"
                 label="RA nome: "
@@ -168,7 +168,6 @@ export const CadastroCliente = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required
                 fullWidth
                 name="valor1"
                 label="Valor: "

@@ -15,6 +15,7 @@ import lds_lab2.lab2_gestao_automoveis.model.ClienteModel;
 import lds_lab2.lab2_gestao_automoveis.repository.AgenteRepository;
 import lds_lab2.lab2_gestao_automoveis.repository.ClienteRepository;
 import lds_lab2.lab2_gestao_automoveis.request.LoginRequest;
+import lds_lab2.lab2_gestao_automoveis.response.LoginResponse;
 import lds_lab2.lab2_gestao_automoveis.model.AgenteModel;
 
 @RestController
@@ -37,9 +38,10 @@ public class UsuarioController {
             return ResponseEntity.ok(agente);
         } else {
             Optional<ClienteModel> cliente = clienteRepository.findByLoginAndSenha(login, senha);
-    
+
             if (cliente.isPresent()) {
-                return ResponseEntity.ok(cliente);
+                LoginResponse response = new LoginResponse(cliente.get(), "Cliente");
+                return ResponseEntity.ok(response);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não encontrado! Login ou senha inválidos");
             }

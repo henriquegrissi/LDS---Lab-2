@@ -2,6 +2,8 @@ package lds_lab2.lab2_gestao_automoveis.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +19,8 @@ public class AgenteModel extends UsuarioModel {
 
     @Column(unique = true)
     private String cnpj;
+
+    @Enumerated(EnumType.STRING)
     private TipoAgente tipoAgente;
 
     public String getCnpj() {

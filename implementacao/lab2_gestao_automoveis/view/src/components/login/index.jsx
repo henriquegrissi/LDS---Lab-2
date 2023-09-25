@@ -13,14 +13,20 @@ export const Login = () => {
     const handleClick = async () => {
         const user ={
             login: email, 
-            senha,
+            senha: password,
         }
+        console.log(user);
 
-        await useApi
-        .post('cliente/login', user)
-        .then(async _ => {
-          navigate('/login')
-        })  
+        try{
+            const response = await useApi.post('usuario/login', user);
+            if(response.data.tipoCadastro){
+                console.log(response.data.tipoCadastro)
+            }
+            console.log(response);
+          }catch(error){
+            alert('Erro ao efetuar login! Verifique os dados')
+            console.error('Erro:', error);
+          } 
     };
        
     return (
@@ -82,7 +88,7 @@ export const Login = () => {
                         </Grid>
                         
                         <Grid item xs={12}>
-                            <Button item xs={12} type="submit" fullWidth variant="contained" onClick={handleClick}>
+                            <Button xs={12} type="submit" fullWidth variant="contained" onClick={handleClick}>
                                 Login
                             </Button>
                         </Grid>
