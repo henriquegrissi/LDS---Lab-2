@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 public class VeiculoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String matricula;
     private String placa;
     private String marca;
@@ -20,6 +20,14 @@ public class VeiculoModel {
     private Boolean alugado;
     private double valorAluguel;
 
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+        
     public String getMarca(){
         return this.marca;
     }
